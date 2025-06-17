@@ -58,7 +58,7 @@ export default function UUIDGenerator() {
   const [nameInput, setNameInput] = useState('example.com');
   const [namespaceInput, setNamespaceInput] = useState('6ba7b810-9dad-11d1-80b4-00c04fd430c8');
 
-  const generateUUID = () => {
+  const generateUUID = useCallback(() => {
     let newUUID = '';
     
     try {
@@ -88,7 +88,12 @@ export default function UUIDGenerator() {
     } catch (error) {
       console.error('Error generating UUID:', error);
     }
-  };
+  }, [selectedVersion, nameInput, namespaceInput]);
+
+  // Generate initial UUID on component mount
+  useEffect(() => {
+    generateUUID();
+  }, [generateUUID]);
 
   const copyToClipboard = async (text: string) => {
     await navigator.clipboard.writeText(text);

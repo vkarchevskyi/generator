@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import './PasswordGenerator.css';
 
 interface PasswordOptions {
@@ -43,6 +43,11 @@ export default function PasswordGenerator() {
     }
     setPassword(result);
   }, [options]);
+
+  // Generate initial password on component mount
+  useEffect(() => {
+    generatePassword();
+  }, [generatePassword]);
 
   const copyToClipboard = async () => {
     if (password) {

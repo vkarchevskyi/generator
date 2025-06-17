@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ulid, decodeTime } from 'ulid';
 import './ULIDGenerator.css';
 
@@ -12,6 +12,11 @@ export default function ULIDGenerator() {
     setCurrentULID(newULID);
     setUlidHistory(prev => [newULID, ...prev].slice(0, 10));
   };
+
+  // Generate initial ULID on component mount
+  useEffect(() => {
+    generateULID();
+  }, []);
 
   const copyToClipboard = async (text: string) => {
     await navigator.clipboard.writeText(text);
