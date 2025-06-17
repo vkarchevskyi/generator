@@ -32,7 +32,7 @@ A comprehensive React 19 application for generating secure passwords, ULIDs, and
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/generator.git
+git clone https://github.com/vkarchevskyi/generator.git
 cd generator
 
 # Install dependencies
