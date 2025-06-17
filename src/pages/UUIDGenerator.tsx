@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { v1 as uuidv1, v4 as uuidv4, v5 as uuidv5, v6 as uuidv6, v7 as uuidv7 } from 'uuid';
+import { useState, useEffect, useCallback } from 'react';
+import { v1 as uuidv1, v3 as uuidv3, v4 as uuidv4, v5 as uuidv5, v6 as uuidv6, v7 as uuidv7 } from 'uuid';
 import './UUIDGenerator.css';
 
-type UUIDVersion = 'v1' | 'v4' | 'v5' | 'v6' | 'v7';
+type UUIDVersion = 'v1' | 'v3' | 'v4' | 'v5' | 'v6' | 'v7';
 
 interface UUIDInfo {
   version: string;
@@ -17,6 +17,12 @@ const uuidInfo: Record<UUIDVersion, UUIDInfo> = {
     description: 'Time-based UUID',
     useCase: 'When you need time-ordered identifiers',
     details: 'Based on MAC address and timestamp. Provides temporal ordering but may expose MAC address.'
+  },
+  v3: {
+    version: 'UUID v3',
+    description: 'Name-based UUID (MD5)',
+    useCase: 'When you need deterministic UUIDs from names (legacy)',
+    details: 'Generated from namespace and name using MD5 hash. Similar to v5 but uses MD5 instead of SHA-1.'
   },
   v4: {
     version: 'UUID v4',
@@ -59,6 +65,9 @@ export default function UUIDGenerator() {
       switch (selectedVersion) {
         case 'v1':
           newUUID = uuidv1();
+          break;
+        case 'v3':
+          newUUID = uuidv3(nameInput, namespaceInput);
           break;
         case 'v4':
           newUUID = uuidv4();
@@ -135,7 +144,7 @@ export default function UUIDGenerator() {
             </div>
           </div>
 
-          {selectedVersion === 'v5' && (
+          {(selectedVersion === 'v3' || selectedVersion === 'v5') && (
             <div className="name-inputs">
               <div className="input-group">
                 <label>Namespace UUID:</label>
@@ -296,7 +305,8 @@ export default function UUIDGenerator() {
                 <li><strong>Use v4 for general purposes</strong> - Most widely supported and secure</li>
                 <li><strong>Use v7 for new applications</strong> - Modern standard with time ordering</li>
                 <li><strong>Use v1/v6 carefully</strong> - May expose MAC address information</li>
-                <li><strong>Use v5 for deterministic needs</strong> - Same input = same UUID</li>
+                <li><strong>Use v5 for deterministic needs</strong> - Preferred over v3 (uses SHA-1 vs MD5)</li>
+                <li><strong>Avoid v3 when possible</strong> - Uses MD5 which is cryptographically weak</li>
                 <li><strong>Store as binary in databases</strong> - More efficient than string storage</li>
               </ul>
             </div>
