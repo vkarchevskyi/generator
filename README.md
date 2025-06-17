@@ -1,23 +1,122 @@
-# React + TypeScript + Vite
+# 🛠️ Generator Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive React 19 application for generating secure passwords, ULIDs, and UUIDs with educational content about each identifier type.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🔒 Password Generator
+- Customizable length (4-50 characters)
+- Character type options (uppercase, lowercase, numbers, symbols)
+- Real-time strength indicator
+- Security best practices guide
 
-## Expanding the ESLint configuration
+### 🆔 ULID Generator
+- Time-ordered identifiers
+- Detailed breakdown analysis
+- Educational content about ULID benefits
+- Comparison with UUIDs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔑 UUID Generator
+- Multiple versions support (v1, v3, v4, v5, v6, v7)
+- Version-specific information
+- Name-based UUID generation (v3, v5)
+- Technical structure analysis
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/generator.git
+cd generator
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Visit `http://localhost:5173` to view the application.
+
+## 📦 Building for Production
+
+```bash
+# Build the application
+npm run build
+
+# Preview the build
+npm run preview
+```
+
+## 🌐 Deployment to GitHub Pages
+
+This project is configured for easy deployment to GitHub Pages with client-side routing support.
+
+### Automatic Deployment (Recommended)
+
+1. **Update the homepage URL** in `package.json`:
+   ```json
+   "homepage": "https://yourusername.github.io/generator"
+   ```
+
+2. **Push to GitHub** and the workflow will automatically deploy to GitHub Pages:
+   ```bash
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push origin main
+   ```
+
+3. **Enable GitHub Pages** in your repository settings:
+   - Go to Settings → Pages
+   - Source: GitHub Actions
+
+### Manual Deployment
+
+```bash
+# Build and deploy manually
+npm run deploy
+```
+
+## 🛠️ Tech Stack
+
+- **React 19** - Latest React with modern features
+- **TypeScript** - Type safety and better developer experience
+- **Vite** - Fast build tool and development server
+- **React Router** - Client-side routing
+- **CSS Modules** - Scoped styling
+- **UUID Library** - Comprehensive UUID generation
+- **ULID Library** - ULID generation and parsing
+
+## 📚 Educational Content
+
+The application includes comprehensive educational content about:
+- Password security best practices
+- ULID structure and benefits
+- UUID versions and use cases
+- When to use each identifier type
+- Technical implementation details
+
+## 🎨 Design Features
+
+- Modern, responsive design
+- Gradient backgrounds with unique themes per page
+- Smooth animations and transitions
+- Mobile-friendly interface
+- Accessibility considerations
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
     // Optionally, add this for stylistic rules
     ...tseslint.configs.stylisticTypeChecked,
   ],

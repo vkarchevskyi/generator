@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/generator">
       <div className="app">
         <Navigation />
         <main className="main-content">
